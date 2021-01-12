@@ -4,6 +4,7 @@ import Search from "./Components/Search";
 import Dropdown from "./Components/Dropdown";
 import Translate from "./Components/Translate";
 import Route from "./Components/Route";
+import Header from "./Components/Header";
 
 const items = [
   {
@@ -44,6 +45,7 @@ export default () => {
 
   return (
     <div>
+      <Header />
       <Route path="/">
         <Accordion items={items} />
       </Route>
@@ -67,7 +69,7 @@ export default () => {
           />
         ) : null}
       </Route>
-      <Route path="/tranlate">
+      <Route path="/translate">
         <Translate />
       </Route>
     </div>
