@@ -6,7 +6,14 @@ class Comment extends Component {
     this.state = {};
   }
   render() {
-    return <div>Comment</div>;
+    return (
+      <div className="comment">
+        <div className="comment-user">
+          <span>{this.props.comment.username} </span>：
+        </div>
+        <p>{this.props.comment.content}</p>
+      </div>
+    );
   }
 }
 
