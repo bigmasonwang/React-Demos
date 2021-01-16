@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class CommentInput extends Component {
+  static propTypes = {
+    onSubmit: PropTypes.func,
+  };
   constructor(props) {
     super(props);
     this.state = {
@@ -9,10 +13,25 @@ class CommentInput extends Component {
     };
   }
 
+  componentDidMount() {
+    this.textarea.focus();
+    this._loadUsername();
+  }
+
+  _loadUsername() {
+    const username = localStorage.getItem('username');
+    if (username) {
+      this.setState({ username: username });
+    }
+  }
+
   handleSubmit() {
     if (this.props.onSubmit) {
-      const { username, content } = this.state;
-      this.props.onSubmit({ username, content });
+      this.props.onSubmit({
+        username: this.state.username,
+        content: this.state.content,
+        createdTime: +new Date(),
+      });
     }
     this.setState({ content: '' });
   }
@@ -28,6 +47,10 @@ class CommentInput extends Component {
               onChange={(e) => {
                 this.setState({ username: e.target.value });
               }}
+              // save user name
+              onBlur={(e) => {
+                localStorage.setItem('username', e.target.value);
+              }}
             />
           </div>
         </div>
@@ -35,6 +58,8 @@ class CommentInput extends Component {
           <span className="comment-field-name">Content:</span>
           <div className="comment-field-input">
             <textarea
+              // get DOM element of textarea
+              ref={(textarea) => (this.textarea = textarea)}
               value={this.state.content}
               onChange={(e) => {
                 this.setState({ content: e.target.value });

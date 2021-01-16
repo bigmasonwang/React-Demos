@@ -1,8 +1,5 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
+import TodoList from "./TodoList";
 
-ReactDOM.render(
-  <div>hh</div>,
-  document.getElementById('root')
-);
-
+ReactDOM.render(<TodoList />, document.getElementById("root"));
