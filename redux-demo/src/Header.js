@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 class Header extends Component {
   render() {
-    return <h1>React.js 小书</h1>;
+    return <h1>The Header</h1>;
   }
 }
 
