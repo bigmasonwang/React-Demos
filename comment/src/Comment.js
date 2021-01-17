@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 class Comment extends Component {
   static propTypes = {
     comment: PropTypes.object.isRequired,
+    onDeleteComment: PropTypes.func,
+    index: PropTypes.number,
   };
 
   constructor(props) {
@@ -11,8 +13,13 @@ class Comment extends Component {
     this.state = { timeString: '' };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this._updateTimeString();
+    this._timer = setInterval(this._updateTimeString.bind(this), 5000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this._timer);
   }
 
   _updateTimeString() {
@@ -25,14 +32,28 @@ class Comment extends Component {
           : `${Math.round(Math.max(duration, 1))}s ago`,
     });
   }
+
+  handledeleteComment() {
+    if (this.props.onDeleteComment) {
+      this.props.onDeleteComment(this.props.index);
+    }
+  }
+
   render() {
+    const { comment } = this.props;
     return (
-      <div className="comment">
-        <div className="comment-user">
-          <span>{this.props.comment.username} </span>：
+      <div className='comment'>
+        <div className='comment-user'>
+          <span>{comment.username} </span>：
         </div>
-        <p>{this.props.comment.content}</p>
-        <span className="comment-createdtime">{this.state.timeString}</span>
+        <p>{comment.content}</p>
+        <span className='comment-createdtime'>{this.state.timeString}</span>
+        <span
+          className='comment-delete'
+          onClick={this.handledeleteComment.bind(this)}
+        >
+          delete
+        </span>
       </div>
     );
   }

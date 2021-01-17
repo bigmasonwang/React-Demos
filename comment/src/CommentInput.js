@@ -38,10 +38,10 @@ class CommentInput extends Component {
 
   render() {
     return (
-      <div className="comment-input">
-        <div className="comment-field">
-          <span className="comment-field-name">User Name:</span>
-          <div className="comment-field-input">
+      <div className='comment-input'>
+        <div className='comment-field'>
+          <span className='comment-field-name'>User Name:</span>
+          <div className='comment-field-input'>
             <input
               value={this.state.username}
               onChange={(e) => {
@@ -54,9 +54,9 @@ class CommentInput extends Component {
             />
           </div>
         </div>
-        <div className="comment-field">
-          <span className="comment-field-name">Content:</span>
-          <div className="comment-field-input">
+        <div className='comment-field'>
+          <span className='comment-field-name'>Content:</span>
+          <div className='comment-field-input'>
             <textarea
               // get DOM element of textarea
               ref={(textarea) => (this.textarea = textarea)}
@@ -67,7 +67,7 @@ class CommentInput extends Component {
             />
           </div>
         </div>
-        <div className="comment-field-button">
+        <div className='comment-field-button'>
           <button onClick={this.handleSubmit.bind(this)}>Submit</button>
         </div>
       </div>
