@@ -5,7 +5,7 @@ import Header from './Header';
 import Content from './Content';
 import './index.css';
 
-const creatStore = (reducer) => {
+const createStore = (reducer) => {
   let state = null;
   const listeners = [];
   const subscribe = (listener) => listeners.push(listener);
@@ -30,7 +30,7 @@ const themeReducer = (state, action) => {
   }
 };
 
-const store = creatStore(themeReducer);
+const store = createStore(themeReducer);
 
 class Index extends Component {
   static childContextTypes = { store: PropTypes.object };
