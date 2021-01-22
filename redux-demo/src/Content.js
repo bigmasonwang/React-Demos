@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import propTypes from 'prop-types';
 import ThemeSwitch from './ThemeSwitch';
 import { connect } from './react-redux';
 
 class Content extends Component {
   static contextTypes = {
-    themeColor: PropTypes.string
+    themeColor: propTypes.string
   };
   render() {
     return (

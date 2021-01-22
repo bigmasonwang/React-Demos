@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import propTypes from 'prop-types';
 
 export const connect = (mapStateToProps, mapDispatchToProps) => (
   WrappedComponent
 ) => {
   class Connect extends Component {
     static contextTypes = {
-      store: PropTypes.object
+      store: propTypes.object
     };
     constructor() {
       super();
@@ -42,11 +42,11 @@ export const connect = (mapStateToProps, mapDispatchToProps) => (
 
 export class Provider extends Component {
   static propTypes = {
-    store: PropTypes.object,
-    children: PropTypes.any
+    store: propTypes.object,
+    children: propTypes.any
   };
   static childContextTypes = {
-    store: PropTypes.object
+    store: propTypes.object
   };
   getChildContext() {
     return {
