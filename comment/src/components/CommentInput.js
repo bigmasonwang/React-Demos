@@ -3,26 +3,41 @@ import PropTypes from 'prop-types';
 
 class CommentInput extends Component {
   static propTypes = {
+    username: PropTypes.string,
     onSubmit: PropTypes.func,
+    onUserNameInputBlur: PropTypes.func,
+  };
+  static defaultProps = {
+    username: '',
   };
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
+      username: props.username,
       content: '',
     };
   }
 
   componentDidMount() {
     this.textarea.focus();
-    this._loadUsername();
   }
 
-  _loadUsername() {
-    const username = localStorage.getItem('username');
-    if (username) {
-      this.setState({ username: username });
+  handleUsernameBlur(event) {
+    if (this.props.onUserNameInputBlur) {
+      this.props.onUserNameInputBlur(event.target.value);
     }
+  }
+
+  handleUsernameChange(event) {
+    this.setState({
+      username: event.target.value,
+    });
+  }
+
+  handleContentChange(event) {
+    this.setState({
+      content: event.target.value,
+    });
   }
 
   handleSubmit() {
