@@ -6,9 +6,15 @@ import store from './store';
 class TodoList extends Component {
   constructor(props) {
     super(props);
-    // console.log(store.getState());
     this.state = store.getState();
     this.changeInputValue = this.changeInputValue.bind(this);
+    this.storeChange = this.storeChange.bind(this);
+    this.clickButton = this.clickButton.bind(this);
+    store.subscribe(this.storeChange);
+  }
+
+  storeChange() {
+    this.setState(store.getState());
   }
 
   changeInputValue(e) {
@@ -19,16 +25,26 @@ class TodoList extends Component {
     store.dispatch(action);
   }
 
+  clickButton() {
+    const action = {
+      type: 'todo/addItem',
+    };
+    store.dispatch(action);
+  }
+
   render() {
     return (
       <div style={{ margin: '10px' }}>
         <div>
           <Input
-            placeholder={this.state.inputValue}
+            placeholder='Write Something'
             style={{ width: '250px', marginRight: '10px' }}
             onChange={this.changeInputValue}
+            value={this.state.inputValue}
           ></Input>
-          <Button type='primary'>Add</Button>
+          <Button type='primary' onClick={this.clickButton}>
+            Add
+          </Button>
         </div>
         <div style={{ margin: '10px', width: '300px' }}>
           <List
