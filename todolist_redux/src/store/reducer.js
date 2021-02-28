@@ -1,5 +1,3 @@
-import store from '.';
-
 const defaultState = {
   inputValue: 'Write Something',
   list: ['Breakfast', 'Lunch', 'supper'],
@@ -18,6 +16,12 @@ export const reducer = (state = defaultState, action) => {
       let newState = JSON.parse(JSON.stringify(state));
       newState.list.push(newState.inputValue);
       newState.inputValue = '';
+      return newState;
+    }
+
+    case 'todo/deleteItem': {
+      let newState = JSON.parse(JSON.stringify(state));
+      newState.list.splice(action.index, 1);
       return newState;
     }
 

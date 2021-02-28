@@ -32,6 +32,14 @@ class TodoList extends Component {
     store.dispatch(action);
   }
 
+  deleteItem(index) {
+    const action = {
+      type: 'todo/deleteItem',
+      index,
+    };
+    store.dispatch(action);
+  }
+
   render() {
     return (
       <div style={{ margin: '10px' }}>
@@ -51,7 +59,11 @@ class TodoList extends Component {
             size='small'
             bordered
             dataSource={this.state.list}
-            renderItem={(item) => <List.Item>{item}</List.Item>}
+            renderItem={(item, index) => (
+              <List.Item onClick={this.deleteItem.bind(this, index)}>
+                {item}
+              </List.Item>
+            )}
           />
         </div>
       </div>
