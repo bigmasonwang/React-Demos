@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import 'antd/dist/antd.css';
 import TodoListUI from './TodoListUI';
 import store from './store';
-
+import axios from 'axios';
 import {
   addItemAction,
   changeInputValueAction,
   deleteItemAction,
+  getListAction,
 } from './store/actions';
 
 class TodoList extends Component {
@@ -18,6 +19,17 @@ class TodoList extends Component {
     this.clickButton = this.clickButton.bind(this);
     this.deleteItem = this.deleteItem.bind(this);
     store.subscribe(this.storeChange);
+  }
+
+  componentDidMount() {
+    axios
+      .get(
+        ' http://mock.51y.cc:81/mock/603b725232adfa0499d3babb/todolist/getList'
+      )
+      .then((res) => {
+        const data = res.data;
+        store.dispatch(getListAction(data));
+      });
   }
 
   storeChange() {
