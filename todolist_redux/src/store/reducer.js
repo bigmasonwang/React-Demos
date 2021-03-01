@@ -1,7 +1,7 @@
 import { ADD_ITEM, CHANGE_INPUT, DELETE_ITEM, GET_LIST } from './actionTypes';
 
 const defaultState = {
-  inputValue: '',
+  inputValue: 'write ',
   list: [],
 };
 
